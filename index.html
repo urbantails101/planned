@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>planned — Your journey, beautifully arranged.</title>
+
+<style>
+:root {
+  --bg: #070b0d;
+  --card: #0d1417;
+  --card2: #111a1e;
+  --text: #f5f1e9;
+  --muted: #9da5a7;
+  --gold: #e5c78e;
+  --border: rgba(255,255,255,.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 50% -10%, #1b292e 0%, #070b0d 42%);
+  color: var(--text);
+  font-family: Inter, Arial, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(1160px, calc(100% - 40px));
+  margin: auto;
+}
+
+/* NAVIGATION */
+
+nav {
+  height: 76px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+
+  background: rgba(7,11,13,.78);
+  backdrop-filter: blur(20px);
+
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  letter-spacing: -1.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: #bfc5c6;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+.nav-button {
+  border: 1px solid rgba(229,199,142,.5);
+  background: transparent;
+  color: var(--gold);
+  padding: 11px 19px;
+  border-radius: 999px;
+}
+
+/* BUTTONS */
+
+.primary {
+  border: none;
+  background: var(--gold);
+  color: #17130b;
+  padding: 15px 25px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.secondary {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 999px;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 720px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+  align-items: center;
+
+  padding: 75px 0;
+}
+
+.eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+}
+
+h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(60px, 8vw, 95px);
+  font-weight: 400;
+  letter-spacing: -5px;
+  line-height: .9;
+
+  margin: 18px 0;
+}
+
+.hero p {
+  max-width: 540px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+/* GLOBE */
+
+.globe {
+  height: 530px;
+
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 40px;
+  border: 1px solid var(--border);
+
+  background:
+    radial-gradient(circle at 52% 55%,
+      rgba(70,120,140,.38),
+      transparent 32%),
+    radial-gradient(circle at 60% 45%,
+      rgba(229,199,142,.16),
+      transparent 25%),
+    linear-gradient(145deg,#18252a,#040708 70%);
+
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+
+.globe::before {
+  content: "";
+
+  position: absolute;
+
+  width: 470px;
+  height: 470px;
+
+  left: 50%;
+  top: 55%;
+
+  transform: translate(-50%,-50%);
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(229,199,142,.25);
+
+  box-shadow: inset 0 0 100px rgba(0,0,0,.8);
+}
+
+.globe::after {
+  content: "";
+
+  position: absolute;
+
+  width: 750px;
+  height: 1px;
+
+  left: -60px;
+  top: 58%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
+
+  transform: rotate(-27deg);
+
+  opacity: .7;
+}
+
+.globe-text {
+  position: absolute;
+
+  left: 30px;
+  bottom: 30px;
+
+  font-family: Georgia, serif;
+  font-size: 27px;
+  line-height: 1.15;
+
+  max-width: 280px;
+}
+
+/* SECTIONS */
+
+section {
+  padding: 95px 0;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: 45px;
+  margin: 8px 0;
+}
+
+.section-head p {
+  max-width: 450px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* PLANNER */
+
+.search-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 12px;
+
+  padding: 22px;
+
+  border-radius: 24px;
+
+  background: rgba(255,255,255,.045);
+  border: 1px solid var(--border);
+
+  box-shadow: 0 25px 70px rgba(0,0,0,.35);
+}
+
+.field {
+  display: block;
+
+  background: #090f12;
+  border: 1px solid var(--border);
+
+  border-radius: 15px;
+
+  padding: 13px 15px;
+}
+
+.field small {
+  display: block;
+
+  color: #727c7f;
+
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+
+  background: none;
+  border: none;
+  outline: none;
+
+  color: white;
+}
+
+/* DESTINATIONS */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 17px;
+}
+
+.card {
+  overflow: hidden;
+
+  border-radius: 25px;
+  border: 1px solid var(--border);
+
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,.06),
+    rgba(255,255,255,.02)
+  );
+
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(229,199,142,.4);
+}
+
+.card-image {
+  height: 215px;
+
+  background-size: cover;
+  background-position: center;
+}
+
+.london {
+  background-image:
+    linear-gradient(
+      180deg,
+      transparent 45%,
+      rgba(0,0,0,.7)
+    ),
+    url("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1000&q=80");
+}
+
+.paris {
+  background-image:
+    linear-gradient(
+      180deg,
+      transparent 45%,
+      rgba(0,0,0,.7)
+    ),
+    url("https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=80");
+}
+
+.tokyo {
+  background-image:
+    linear-gradient(
+      180deg,
+      transparent 45%,
+      rgba(0,0,0,.7)
+    ),
+    url("https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=1000&q=80");
+}
+
+.card-body {
+  padding: 19px;
+}
+
+.card-body h3 {
+  font-family: Georgia, serif;
+  font-size: 27px;
+  font-weight: 400;
+
+  margin: 0 0 7px;
+}
+
+.card-body p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.price {
+  color: var(--gold);
+  margin-top: 17px;
+}
+
+/* FEATURES */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 17px;
+}
+
+.feature {
+  padding: 30px;
+
+  border-radius: 25px;
+  border: 1px solid var(--border);
+
+  background: #0c1215;
+}
+
+.feature-icon {
+  font-size: 27px;
+  margin-bottom: 20px;
+}
+
+.feature h3 {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.feature p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* FINAL CTA */
+
+.final-card {
+  padding: 50px;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #152126,
+      #080c0e
+    );
+
+  border: 1px solid var(--border);
+}
+
+.final-card h2 {
+  max-width: 700px;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 35px 0;
+
+  border-top: 1px solid var(--border);
+
+  color: #788184;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 13px;
+}
+
+/* MODAL */
+
+.modal {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0,0,0,.75);
+
+  backdrop-filter: blur(10px);
+
+  z-index: 100;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-box {
+  width: min(560px,100%);
+
+  padding: 30px;
+
+  border-radius: 28px;
+
+  background: #0d1417;
+
+  border: 1px solid var(--border);
+
+  box-shadow: 0 30px 90px rgba(0,0,0,.6);
+}
+
+.close {
+  float: right;
+
+  border: none;
+  background: none;
+
+  color: white;
+
+  font-size: 25px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 50px 0;
+  }
+
+  .globe {
+    height: 390px;
+  }
+
+  .search-box,
+  .cards,
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .section-head {
+    display: block;
+  }
+
+  footer {
+    display: block;
+    line-height: 2;
+  }
+
+  h1 {
+    letter-spacing: -3px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+  <div class="container nav-inner">
+
+    <div class="logo">
+      planned
+    </div>
+
+    <div class="nav-links">
+      <a href="#discover">Discover</a>
+      <a href="#plan">Plan</a>
+      <a href="#trips">Trips</a>
+      <a href="#about">About</a>
+    </div>
+
+    <button class="nav-button" onclick="openModal()">
+      Start planning
+    </button>
+
+  </div>
+</nav>
+
+
+<!-- HERO -->
+
+<main>
+
+<section class="hero container">
+
+  <div>
+
+    <div class="eyebrow">
+      Your journey, beautifully arranged.
+    </div>
+
+    <h1>
+      Travel,<br>
+      planned.
+    </h1>
+
+    <p>
+      From the first idea to the final boarding pass,
+      planned brings flights, stays, experiences,
+      budgets and itineraries into one calm place.
+    </p>
+
+    <div class="actions">
+
+      <button
+        class="primary"
+        onclick="document.getElementById('plan').scrollIntoView()">
+
+        Build a trip →
+
+      </button>
+
+      <button
+        class="secondary"
+        onclick="document.getElementById('discover').scrollIntoView()">
+
+        Explore destinations
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="globe">
+
+    <div class="globe-text">
+      Custom trips.<br>
+      Better flights.<br>
+      Unforgettable experiences.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PLANNER -->
+
+<section id="plan" class="container">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow">
+        Plan your next escape
+      </div>
+
+      <h2>
+        Where to next?
+      </h2>
+
+    </div>
+
+    <p>
+      Tell planned the basics.
+      We'll turn the blank page into a trip worth looking forward to.
+    </p>
+
+  </div>
+
+
+  <div class="search-box">
+
+    <label class="field">
+
+      <small>From</small>
+
+      <input
+        id="from"
+        placeholder="Jackson, TN">
+
+    </label>
+
+
+    <label class="field">
+
+      <small>Destination</small>
+
+      <input
+        id="destination"
+        placeholder="London, Paris, Tokyo…">
+
+    </label>
+
+
+    <label class="field">
+
+      <small>Dates</small>
+
+      <input
+        placeholder="Choose your dates">
+
+    </label>
+
+
+    <button
+      class="primary"
+      onclick="buildTrip()">
+
+      Plan it →
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- DESTINATIONS -->
+
+<section id="discover" class="container">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow">
+        Inspiration
+      </div>
+
+      <h2>
+        Popular destinations
+      </h2>
+
+    </div>
+
+    <p>
+      Three places to start.
+      Thousands of ways to make them yours.
+    </p>
+
+  </div>
+
+
+  <div class="cards">
+
+
+    <article
+      class="card"
+      onclick="chooseDestination('London')">
+
+      <div class="card-image london"></div>
+
+      <div class="card-body">
+
+        <h3>
+          London
+        </h3>
+
+        <p>
+          History, neighborhoods & iconic rail.
+        </p>
+
+        <div class="price">
+          From $1,240
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article
+      class="card"
+      onclick="chooseDestination('Paris')">
+
+      <div class="card-image paris"></div>
+
+      <div class="card-body">
+
+        <h3>
+          Paris
+        </h3>
+
+        <p>
+          Art, architecture & long café mornings.
+        </p>
+
+        <div class="price">
+          From $1,380
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article
+      class="card"
+      onclick="chooseDestination('Tokyo')">
+
+      <div class="card-image tokyo"></div>
+
+      <div class="card-body">
+
+        <h3>
+          Tokyo
+        </h3>
+
+        <p>
+          Neon nights, quiet temples & perfect trains.
+        </p>
+
+        <div class="price">
+          From $1,690
+        </div>
+
+      </div>
+
+    </article>
+
+
+  </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section id="trips" class="container">
+
+  <div class="section-head">
+
+    <div>
+
+      <div class="eyebrow">
+        Everything together
+      </div>
+
+      <h2>
+        One trip. One view.
+      </h2>
+
+    </div>
+
+  </div>
+
+
+  <div class="features">
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        ✈︎
+      </div>
+
+      <h3>
+        Better flights
+      </h3>
+
+      <p>
+        Compare routes, stops, cabin classes
+        and schedules without losing sight
+        of the whole trip.
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        ⌂
+      </div>
+
+      <h3>
+        Beautiful stays
+      </h3>
+
+      <p>
+        Keep your hotels, room choices,
+        nightly rates and location notes
+        beside the rest of your plans.
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        ◈
+      </div>
+
+      <h3>
+        Real itineraries
+      </h3>
+
+      <p>
+        Build each day around the things
+        you actually want to do, with room
+        for the unexpected.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about" class="container">
+
+  <div class="final-card">
+
+    <div class="eyebrow">
+      planned by Reece Travel
+    </div>
+
+    <h2>
+      Less searching.<br>
+      More going.
+    </h2>
+
+    <p style="color:#9da5a7;max-width:650px;line-height:1.7">
+
+      A design-forward travel workspace for
+      people who care about the route, the room,
+      the budget and every little detail in between.
+
+    </p>
+
+    <button
+      class="primary"
+      onclick="openModal()">
+
+      Start a new trip →
+
+    </button>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="container">
+
+  <span>
+    © 2026 planned
+  </span>
+
+  <span>
+    Travel, thoughtfully arranged.
+  </span>
+
+</footer>
+
+
+<!-- MODAL -->
+
+<div
+  class="modal"
+  id="modal"
+  onclick="closeOutside(event)">
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      onclick="closeModal()">
+
+      ×
+
+    </button>
+
+    <div class="eyebrow">
+      New trip
+    </div>
+
+    <h2>
+      Let's make a plan.
+    </h2>
+
+    <p id="modal-text" style="color:#9da5a7">
+      Start with a destination and we'll take it from there.
+    </p>
+
+    <label
+      class="field"
+      style="display:block;margin:20px 0">
+
+      <small>
+        Destination
+      </small>
+
+      <input
+        id="modal-destination"
+        placeholder="Where are you going?">
+
+    </label>
+
+    <button
+      class="primary"
+      onclick="createTrip()">
+
+      Create trip →
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+function openModal() {
+  document
+    .getElementById("modal")
+    .classList.add("open");
+}
+
+
+function closeModal() {
+  document
+    .getElementById("modal")
+    .classList.remove("open");
+}
+
+
+function closeOutside(event) {
+
+  if (event.target.id === "modal") {
+    closeModal();
+  }
+
+}
+
+
+function chooseDestination(place) {
+
+  document
+    .getElementById("modal-destination")
+    .value = place;
+
+  openModal();
+
+}
+
+
+function buildTrip() {
+
+  const destination =
+    document
+      .getElementById("destination")
+      .value
+      .trim();
+
+  document
+    .getElementById("modal-destination")
+    .value = destination;
+
+  if (destination) {
+
+    document
+      .getElementById("modal-text")
+      .textContent =
+      "Perfect. Let's start shaping your trip to " +
+      destination + ".";
+
+  }
+
+  openModal();
+
+}
+
+
+function createTrip() {
+
+  const destination =
+    document
+      .getElementById("modal-destination")
+      .value
+      .trim() || "your destination";
+
+  document
+    .getElementById("modal-text")
+    .textContent =
+    "Your " + destination +
+    " trip is ready to start. ✦";
+
+}
+
+</script>
+
+</body>
+</html>
